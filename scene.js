@@ -2,9 +2,9 @@
 const X_OFFSET = 0;
 const Y_OFFSET = 0;
 const Z_OFFSET = 0;
-const X_SCALE = 0.01;
-const Y_SCALE = 0.01;
-const Z_SCALE = 0.01;
+const X_SCALE = 0.0001;
+const Y_SCALE = 0.001;
+const Z_SCALE = 0.1;
 const OCTAVES = 8;
 const PERSISTENCE = 3;
 
