@@ -3,18 +3,23 @@ const X_OFFSET = 0;
 const Y_OFFSET = 0;
 const Z_OFFSET = 0;
 const X_SCALE = 0.0001;
-const Y_SCALE = 0.001;
-const Z_SCALE = 0.1;
+const Y_SCALE = 0.0001;
+const Z_SCALE = 0.01;
 const OCTAVES = 8;
 const PERSISTENCE = 3;
 
+// Animation
+const ANIMATE = true;
+const ANIMATION_SPEED = 60 // Frames Per Second;
+const OFFSET_INCREMENT = 0.0004;
+
 // World
 // WARNING: the bigger the world size, the more objects will be generated on load.
-const WORLD_SIZE = 24;
-const GEOMETRY_SIZE = 0.025;      
+const WORLD_SIZE = 22;
+const GEOMETRY_SIZE = 0.03;      
 const SCENE_BG_COLOR = new THREE.Color( 0x021121 );
 const GEOMETRY_COLOR = new THREE.Color( 0x2e6ec9 );
-const FOG_DENSITY = 0.08;
+const FOG_DENSITY = 0.09;
 
 // Camera
 const FOV = 100; 
@@ -50,6 +55,9 @@ function setup() {
     createGeometries();
     setGeometryPositions();
     addEventListeners();
+
+    if(ANIMATE)
+        startUpdatingPositions();
 }
 
 function setRenderer() {
@@ -166,4 +174,13 @@ function moveCamera() {
     camera.position.x -= lookDirection.x * velocity;
     camera.position.y -= lookDirection.y * velocity;
     camera.position.z -= lookDirection.z * velocity;
+}
+
+function startUpdatingPositions() {
+    let i = 0;
+    window.setInterval( function() {
+        generatePositions( i );
+        setGeometryPositions();
+        i += OFFSET_INCREMENT;
+    }, 1000 / ANIMATION_SPEED );
 }
