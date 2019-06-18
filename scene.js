@@ -27,7 +27,8 @@ const KEY_DOWN = 40;
 const KEY_W = 87;
 const KEY_S = 83;
 
-let camera, velocity = 0, scene, renderer, geometries = [];
+let noise = new Noise();
+let camera, velocity = 0, scene, renderer, positions = [], geometries = [];
 
 let width = window.innerWidth;
 let height = window.innerHeight;
@@ -45,7 +46,9 @@ function setup() {
     setScene();
     setCamera();
     addLights();
+    generatePositions();
     createGeometries();
+    setGeometryPositions();
     addEventListeners();
 }
 
@@ -85,9 +88,17 @@ function addLights() {
     scene.add( pointLightThree );
 }
 
+function generatePositions(offset = 0) {
+    positions = noise.CreateFBMCube( WORLD_SIZE, X_OFFSET + offset, Y_OFFSET + offset, Z_OFFSET + offset, X_SCALE, Y_SCALE, Z_SCALE, OCTAVES, PERSISTENCE );
+}
+
+function setGeometryPositions() {
+    for( let i = 0; i < geometries.length; i++) {
+        geometries[i].position.set( positions[ i ].x * WORLD_SIZE, positions[ i ].y * WORLD_SIZE, positions[ i ].z * WORLD_SIZE );
+    }
+}
+
 function createGeometries() {
-    let noise = new Noise();
-    let positions = noise.CreateFBMCube( WORLD_SIZE, X_OFFSET, Y_OFFSET, Z_OFFSET, X_SCALE, Y_SCALE, Z_SCALE, OCTAVES, PERSISTENCE );
 
     let material = new THREE.MeshPhongMaterial({
         color: new THREE.Color( GEOMETRY_COLOR ),
@@ -100,12 +111,6 @@ function createGeometries() {
 
         geometries.push( geometry );
         scene.add( geometry );
-    }
-
-    console.log(positions);
-
-    for( let i = 0; i < geometries.length; i++) {
-        geometries[i].position.set( positions[ i ].x * WORLD_SIZE, positions[ i ].y * WORLD_SIZE, positions[ i ].z * WORLD_SIZE );
     }
 }
 
