@@ -16,15 +16,17 @@ const OFFSET_INCREMENT = 0.0004;
 // World
 // WARNING: the bigger the world size, the more objects will be generated on load.
 const WORLD_SIZE = 22;
-const GEOMETRY_SIZE = 0.03;      
+const GEOMETRY_SIZE = 0.03;
+const ROTATE_GEOMETRIES = true;      
 const SCENE_BG_COLOR = new THREE.Color( 0x021121 );
 const GEOMETRY_COLOR = new THREE.Color( 0x2e6ec9 );
 const FOG_DENSITY = 0.09;
 
 // Camera
-const FOV = 100; 
+const FOV = 100;
 
 // Controls
+const ENABLE_CONTROLS = true;
 const MOUSE_SENSITIVITY = 0.002;
 const VELOCITY_INCREMENTAL = 0.001;
 const KEY_UP = 38; 
@@ -129,11 +131,17 @@ function addEventListeners() {
 }
 
 function onMouseMove( event ) {
+    if(!ENABLE_CONTROLS) 
+        return;
+
     mouse.x = ( event.clientX - windowHalf.x );
     mouse.y = ( event.clientY - windowHalf.y );
 }
 
 function onKeyDown( event ) {
+    if(!ENABLE_CONTROLS) 
+        return;
+
     if( event.keyCode == KEY_UP || event.keyCode == KEY_W )
         velocity -= VELOCITY_INCREMENTAL;
 
@@ -153,12 +161,14 @@ function onResize() {
 }
 
 function animate() {
-    moveCamera();
+    if(ENABLE_CONTROLS)
+        moveCamera();
 
-    for( let i = 0; i < geometries.length; i++ ) {
-        geometries[i].rotation.x += ( Math.random() * ( 3 - 1 ) + 1 ) / 100;
-        geometries[i].rotation.y += ( Math.random() * ( 3 - 1 ) + 1 ) / 100;
-    }
+    if(ROTATE_GEOMETRIES)
+        for( let i = 0; i < geometries.length; i++ ) {
+            geometries[i].rotation.x += ( Math.random() * ( 3 - 1 ) + 1 ) / 100;
+            geometries[i].rotation.y += ( Math.random() * ( 3 - 1 ) + 1 ) / 100;
+        }
 
     renderer.render( scene, camera );
     requestAnimationFrame( animate );        
