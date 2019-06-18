@@ -1,6 +1,6 @@
 # Fractal Brownian Motion / 3D Visualisation
 
-Here you can see 4608 icosahedrons randomly distributed in a three-dimensional space with usage of Fractal Brownian Motion Noise. And it looks quite cool :-).
+Here you can see a swarm of icosahedrons randomly distributed in a three-dimensional space with usage of Fractal Brownian Motion Noise. And it looks quite cool :-).
 
 🔗 [https://marianpekar.github.io/fbm-space](https://marianpekar.github.io/fbm-space) 
 
