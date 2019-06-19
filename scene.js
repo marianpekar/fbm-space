@@ -1,12 +1,15 @@
 // Noise / Fractal Brownian Motion
-const X_OFFSET = 0;
-const Y_OFFSET = 0;
-const Z_OFFSET = 0;
-const X_SCALE = 0.0001;
-const Y_SCALE = 0.0001;
-const Z_SCALE = 0.01;
-const OCTAVES = 8;
-const PERSISTENCE = 3;
+let options = {
+    x_offset: 0,
+    y_offset: 0,
+    z_offset: 0,
+    x_scale: 0.0001,
+    y_scale: 0.0001,
+    z_scale: 0.01,
+    octaves: 8,
+    persistence: 3
+}
+
 
 // Animation
 const ANIMATE = true;
@@ -99,7 +102,9 @@ function addLights() {
 }
 
 function generatePositions(offset = 0) {
-    positions = noise.CreateFBMCube( WORLD_SIZE, X_OFFSET + offset, Y_OFFSET + offset, Z_OFFSET + offset, X_SCALE, Y_SCALE, Z_SCALE, OCTAVES, PERSISTENCE );
+    positions = noise.CreateFBMCube( WORLD_SIZE, 
+                                     options.x_offset + offset, options.y_offset + offset, options.z_offset + offset, 
+                                     options.x_scale, options.y_scale, options.z_scale, options.octaves, options.persistence );
 }
 
 function setGeometryPositions() {
