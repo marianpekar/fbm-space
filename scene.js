@@ -7,7 +7,8 @@ let options = {
     y_scale: 0.0001,
     z_scale: 0.01,
     octaves: 8,
-    persistence: 3
+    persistence: 3,
+    freeze: false
 }
 
 
@@ -194,8 +195,10 @@ function moveCamera() {
 function startUpdatingPositions() {
     let i = 0;
     window.setInterval( function() {
-        generatePositions( i );
-        setGeometryPositions();
-        i += OFFSET_INCREMENT;
+        if(!options.freeze) {
+            generatePositions( i );
+            setGeometryPositions();
+            i += OFFSET_INCREMENT;
+        }
     }, 1000 / ANIMATION_SPEED );
 }
