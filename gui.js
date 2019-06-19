@@ -22,4 +22,5 @@ cameraFolder.add(options,'lockCamera').name("Lock Camera");
 cameraFolder.add(options,'resetCamera').name("Reset Camera");
 
 let animationFolder = gui.addFolder("Animation")
+animationFolder.add(options, 'offset_increment_scale', 1, 100).name("Speed");
 animationFolder.add(options, 'freeze').name("Freeze");

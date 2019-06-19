@@ -14,6 +14,7 @@ let options = {
         velocity = 0;
     },
     lockCamera: false,
+    offset_increment_scale: 1 //change the speed of animation
 }
 
 // Animation
@@ -212,7 +213,7 @@ function startUpdatingPositions() {
         generatePositions( i );
 
         if(!options.freeze) {
-            i += OFFSET_INCREMENT;
+            i += OFFSET_INCREMENT * options.offset_increment_scale;
         }
     }, 1000 / ANIMATION_SPEED );
 }
