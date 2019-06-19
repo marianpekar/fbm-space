@@ -13,9 +13,7 @@ I have to mention some references, I've found particularly helpful while working
 
 *This microproject is powered by THREE.js*. In case you've never heard of this JS library, check out [threejs.org](https://threejs.org/) where you can find more about this awesome library plus a lot of way much cooler examples of usage than in this humble repository.
 
-## What to do here?
+## Controls
 
-1. Clone this repository
-2. Open **index.html** (or see it [here](https://marianpekar.github.io/fbm-space))
-3. Look around using the mouse, press W/Up Arrow to move forward and speed up or S/Back Arrow to slow down or eventually speed up in the backward direction
-4. Explore code in **noise.js** and **scene.js**
+1. Change properties via control panel ( 👍 [https://github.com/dataarts/dat.gui](https://github.com/dataarts/dat.gui))
+1. Look around using the **mouse**, press **W/Up Arrow** to move forward and speed up or **S/Back Arrow** to slow down or eventually speed up in the backward direction
