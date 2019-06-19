@@ -3,7 +3,7 @@ let options = {
     x_offset: 0,
     y_offset: 0,
     z_offset: 0,
-    x_scale: 0.0001,
+    x_scale: 0.0003,
     y_scale: 0.0001,
     z_scale: 0.01,
     octaves: 8,
@@ -14,7 +14,7 @@ let options = {
         velocity = 0;
     },
     lockCamera: false,
-    offset_increment_scale: 1 //change the speed of animation
+    offset_increment_scale: 20 //change the speed of animation
 }
 
 // Animation
