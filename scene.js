@@ -8,9 +8,13 @@ let options = {
     z_scale: 0.01,
     octaves: 8,
     persistence: 3,
-    freeze: false
+    freeze: false,
+    resetCamera: function() {
+        moveCameraToInitialPosition();
+        velocity = 0;
+    },
+    lockCamera: false,
 }
-
 
 // Animation
 const ANIMATE = true;
@@ -82,7 +86,12 @@ function setCamera() {
     camera = new THREE.PerspectiveCamera( FOV, width/height, 0.01, 10000 );
     camera.updateProjectionMatrix();
 
+    moveCameraToInitialPosition();
+}
+
+function moveCameraToInitialPosition() {
     camera.position.z = WORLD_SIZE - WORLD_SIZE / 2;
+    camera.rotation.x = camera.rotation.y = camera.rotation.z = 0;
 }
 
 function addLights() {
@@ -137,7 +146,7 @@ function addEventListeners() {
 }
 
 function onMouseMove( event ) {
-    if(!ENABLE_CONTROLS) 
+    if(options.lockCamera)
         return;
 
     mouse.x = ( event.clientX - windowHalf.x );
@@ -145,7 +154,7 @@ function onMouseMove( event ) {
 }
 
 function onKeyDown( event ) {
-    if(!ENABLE_CONTROLS) 
+    if(options.lockCamera) 
         return;
 
     if( event.keyCode == KEY_UP || event.keyCode == KEY_W )
@@ -167,7 +176,7 @@ function onResize() {
 }
 
 function animate() {
-    if(ENABLE_CONTROLS)
+    if(!options.lockCamera)
         moveCamera();
 
     if(ROTATE_GEOMETRIES)

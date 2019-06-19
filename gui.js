@@ -17,9 +17,9 @@ fBmFolder.add(options, 'persistence', 1, 20).name("Persistence");
 fBmFolder.add(options, 'octaves', 1, 20).name("Octaves");
 fBmFolder.open();
 
-gui.add(options, 'freeze').name("Freeze");
+let cameraFolder = gui.addFolder("Camera");
+cameraFolder.add(options,'lockCamera').name("Lock Camera");
+cameraFolder.add(options,'resetCamera').name("Reset Camera");
 
-
-
-
-
+let animationFolder = gui.addFolder("Animation")
+animationFolder.add(options, 'freeze').name("Freeze");
