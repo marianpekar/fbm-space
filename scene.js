@@ -195,9 +195,10 @@ function moveCamera() {
 function startUpdatingPositions() {
     let i = 0;
     window.setInterval( function() {
+        setGeometryPositions();
+        generatePositions( i );
+
         if(!options.freeze) {
-            generatePositions( i );
-            setGeometryPositions();
             i += OFFSET_INCREMENT;
         }
     }, 1000 / ANIMATION_SPEED );
