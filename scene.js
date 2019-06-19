@@ -179,14 +179,18 @@ function animate() {
     if(!options.lockCamera)
         moveCamera();
 
-    if(ROTATE_GEOMETRIES)
-        for( let i = 0; i < geometries.length; i++ ) {
-            geometries[i].rotation.x += ( Math.random() * ( 3 - 1 ) + 1 ) / 100;
-            geometries[i].rotation.y += ( Math.random() * ( 3 - 1 ) + 1 ) / 100;
-        }
+    if(!options.freeze)
+        rotateGeometries();
 
     renderer.render( scene, camera );
     requestAnimationFrame( animate );        
+}
+
+function rotateGeometries() {
+    for( let i = 0; i < geometries.length; i++ ) {
+        geometries[i].rotation.x += ( Math.random() * ( 3 - 1 ) + 1 ) / 100;
+        geometries[i].rotation.y += ( Math.random() * ( 3 - 1 ) + 1 ) / 100;
+    }
 }
 
 function moveCamera() {
