@@ -18,7 +18,6 @@ let options = {
 }
 
 // Animation
-const ANIMATE = true;
 const ANIMATION_SPEED = 60 // Frames Per Second;
 const OFFSET_INCREMENT = 0.0004;
 
@@ -66,9 +65,7 @@ function setup() {
     createGeometries();
     setGeometryPositions();
     addEventListeners();
-
-    if(ANIMATE)
-        startUpdatingPositions();
+    startUpdatingPositions();
 }
 
 function setRenderer() {
@@ -114,8 +111,14 @@ function addLights() {
 
 function generatePositions(offset = 0) {
     positions = noise.CreateFBMCube( WORLD_SIZE, 
-                                     options.x_offset + offset, options.y_offset + offset, options.z_offset + offset, 
-                                     options.x_scale, options.y_scale, options.z_scale, options.octaves, options.persistence );
+                                     options.x_offset + offset, 
+                                     options.y_offset + offset, 
+                                     options.z_offset + offset, 
+                                     options.x_scale, 
+                                     options.y_scale, 
+                                     options.z_scale, 
+                                     options.octaves, 
+                                     options.persistence );
 }
 
 function setGeometryPositions() {
@@ -130,7 +133,7 @@ function createGeometries() {
         color: new THREE.Color( GEOMETRY_COLOR ),
         shininess:  10,
         flatShading:  true,
-      });
+    });
 
     for( let i = 0; i < positions.length; i++ ) {
         let geometry = new THREE.Mesh( new THREE.IcosahedronGeometry( GEOMETRY_SIZE, 1 ), material );
